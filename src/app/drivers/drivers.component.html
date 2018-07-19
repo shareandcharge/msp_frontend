@@ -1,0 +1,48 @@
+<h2 class="page-title">Drivers</h2>
+
+<div>
+    <ngx-datatable
+      [rows]="driversRows"
+      [columns]="driversColumns"
+      class="material striped"
+      [columnMode]="'force'"
+      [headerHeight]="48"
+      [footerHeight]="48"
+      [rowHeight]="48"
+      [limit]="10"
+      (select)="onSelect($event)"
+      [selected]="selected"
+      [selectionType]="'single'"
+      (select)='onSelect($event)'>
+    </ngx-datatable>
+  </div>
+
+
+  <!-- <ngx-datatable
+  [rows]="driversRows"
+      [columns]="driversColumns"
+      class="material striped"
+      [columnMode]="'force'"
+      [headerHeight]="48"
+      [footerHeight]="48"
+      [rowHeight]="48"
+      [limit]="10"
+      (select)="onSelect($event)"
+      [selected]="selected"
+      [selectionType]="'single'"
+      (select)='onSelect($event)'>
+
+      <ngx-datatable-column *ngFor="let column of driversColumns" name={{column.name}}>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Test">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            test
+          </ng-template>
+        </ngx-datatable-column>
+
+</ngx-datatable> -->
+
