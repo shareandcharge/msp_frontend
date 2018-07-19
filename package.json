@@ -5,11 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot",
-    "start:de": "ng serve --aot --i18nFile=src/locale/messages.de.xlf --i18nFormat=xlf --locale=de",
     "extract": "ng xi18n --outputPath=src/locale",
     "build": "ng build --prod",
-    "build:de": "ng build --prod --i18nFile=src/locale/messages.de.xlf --i18nFormat=xlf --locale=de",
-    "build:all": "npm run extract && npm run build && npm run build:de",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
