@@ -43,7 +43,7 @@ registerLocaleData(localeDE);
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     FormsModule,
     ServicesModule,
     TabsModule,
