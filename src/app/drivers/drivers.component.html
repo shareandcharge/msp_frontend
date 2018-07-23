@@ -14,5 +14,60 @@
       [selected]="selected"
       [selectionType]="'single'"
       (select)='onSelect($event)'>
+
+      <ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Name
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.name}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Address
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+            S & C Address
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.addr}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+           E-mail
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Phone
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.phone}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Tokens
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.balance}} {{row.currency}}
+        </ng-template>
+      </ngx-datatable-column>
+
     </ngx-datatable>
   </div>

@@ -1139,8 +1139,13 @@ mark
   display: block
   line-height: 68px
   text-decoration: none
-  &:hover .c-page-head-nav__link-text::after, &:focus .c-page-head-nav__link-text::after, &:active .c-page-head-nav__link-text::after
+  &:hover .c-page-head-nav__link-text::after,
+  &:focus .c-page-head-nav__link-text::after,
+  &:active .c-page-head-nav__link-text::after
     width: 100%
+
+a.c-page-head-nav__link.is-active .c-page-head-nav__link-text::after
+  width: 100%
 
 @media (min-width: 30.01em)
   .c-page-head-nav__link

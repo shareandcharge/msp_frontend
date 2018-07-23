@@ -175,9 +175,10 @@ p
 .register-form
   width: 480px
   float: right
-  background: rgba(5, 79, 108, 0.2)
+  background: rgba(0,70,102,0.8)
   padding: 24px
   font-size: 0
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.13)
   div:nth-child(4)
     margin-bottom: 24px
   input,
@@ -190,6 +191,7 @@ p
     text-align: right
     padding-right: 16px
     margin: 8px 0
+    color: #fff
   input
     width: 70% !important
     margin: 6px 0px
@@ -197,6 +199,11 @@ p
     width: 140px !important
     float: right
     margin-top: 16px
+    background-color: #fff
+    color: #004666
+    &:hover,
+    &:focus
+      background-color: #fff
 
 input
   border: 0
@@ -265,31 +272,34 @@ input[type=submit]
 
 .motionwerk-logo
   width: 200px
+  background: #fff
+  padding: 16px
 
 .pilot-project-wrapper
-  background: rgba(5, 79, 108, 0.2)
+  background: rgba(0,70,102,0.8)
   display: inline-block
   padding: 24px
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.13)
 
 .pilot-project-text
   display: inline-block
   vertical-align: middle
-  border-left: 2px solid black
+  border-left: 2px solid #fff
   padding: 24px
   margin-left: 24px
   font-size: 18px
   font-weight: bold
+  color: #fff
   span
     display: block
-    &:last-child
-
 
 .mnemonic-seed-wrapper
   display: table
   margin-top: 48px
   background: #fff
   padding: 16px
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+  // box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
   p:last-child
     font-size: 18px
     font-weight: bold
@@ -298,9 +308,11 @@ input[type=submit]
 .account-info-list
   width: 480px
   float: left
-  background: rgba(5, 79, 108, 0.2)
+  background: rgba(0,70,102,0.8)
   padding: 24px
   font-size: 0
+  color: #fff
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.13)
   span:first-child,
   span:last-child
     display: inline-block !important
@@ -318,15 +330,16 @@ input[type=submit]
 .wallet-wrapper
   width: 480px
   float: right
-  background: rgba(5, 79, 108, 0.2)
+  background: rgba(0,70,102,0.8)
   padding: 24px
-  // @include ellipsis(100%)
+  color: #fff
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.13)
 
 .wallet-info
   text-align: center
   padding-bottom: 16px
   margin-bottom: 16px
-  border-bottom: 2px solid #000
+  border-bottom: 2px solid #fff
   &.wallet-info--driver-detail
     position: relative
     padding-bottom: 0
@@ -334,7 +347,7 @@ input[type=submit]
     padding-top: 16px
     margin-top: 16px
     border-bottom: 0
-    border-top: 2px solid #000
+    border-top: 2px solid #fff
     .wallet-info__buttons
       position: absolute
       right: 0
@@ -346,25 +359,28 @@ input[type=submit]
           width: 360px
           position: absolute
           top: 0
-          left: 38px
+          top: 1px
+          left: 42px
           z-index: 1032
           padding: 24px
           background-color: #fff
-          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+          color: #000
+          // box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
         button
-          font-size: 16px
-          padding: 8px 10px
+          font-size: 20px
+          padding: 8px 10px 7px 10px
           border: 1px solid #004666
-          background-color: #004666
-          color: #fff
+          background-color: #fff
+          color: #004666
           cursor: pointer
           border-radius: 0
           display: block
-          margin: 14px 0
+          margin: 12px 0
           &:hover
             outline: none
-            border: 1px solid rgba(0, 70, 102, 0.9)
-            background-color: rgba(0, 70, 102, 0.9)
+            // border: 1px solid rgba(0, 70, 102, 0.9)
+            // background-color: rgba(0, 70, 102, 0.9)
             -webkit-box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4)
             box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4)
         .transaction-list
@@ -382,16 +398,18 @@ input[type=submit]
             width: 45%
             text-align: right
         .wallet-info__tokens
+          padding: 24px 48px
           input
-            width: 216px
             border: 1px solid #000
             margin: 16px 0
+            text-align: center
           button
             width: 100px
             float: right
         .token-ammount__input-wrapper
           @extend %clearfix
           .token-ammount-wrapper
+            width: 100%
             vertical-align: middle
             display: inline-flex
             margin: 0
@@ -400,6 +418,11 @@ input[type=submit]
               float: inherit
               margin: 4px 2px
               display: inline-block
+          & + button
+            font-size: 14px
+            background: #004666
+            color: #fff
+            text-transform: uppercase
   .wallet-info__ammount
     font-size: 20px
     font-weight: bold
@@ -407,7 +430,7 @@ input[type=submit]
   li
     @extend %clearfix
     padding: 10px 0
-    border-bottom: 1px solid #000
+    border-bottom: 1px solid #fff
     &:last-child
       border: 0
     span:first-child
@@ -417,9 +440,11 @@ input[type=submit]
 
 .driver-detail-wrapper
   width: 480px
-  background: rgba(5, 79, 108, 0.2)
+  background: rgba(0,70,102,0.8)
+  color: #fff
   padding: 24px
   font-size: 0
+  color: #fff
   span:first-child,
   span:last-child
     display: inline-block
@@ -452,15 +477,18 @@ input[type=submit]
   margin: 16px 0
   background: #fff
   padding: 16px
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+  // box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
 footer
   position: fixed
   bottom: 0
   left: 0
-  background-color: rgba(255, 255, 255, 0.6)
+  // background-color: rgba(255, 255, 255, 0.6)
+  background-color: #fff
   width: 100%
   padding: 8px 16px
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
   .o-page-wrap
     position: relative
 
@@ -516,3 +544,21 @@ footer
     box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4)
   i
     margin-right: 8px
+
+
+.ngx-datatable.material
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+
+span.datatable-header-cell-label,
+.datatable-header-cell-template-wrap
+  text-transform: uppercase
+  font-size: 13px
+
+.ngx-datatable.material.striped .datatable-row-odd,
+.ngx-datatable.bootstrap:not(.cell-selection) .datatable-body-row:hover,
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group
+  background: #E5ECEF !important
+
+.c-page-head
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.13) !important
+  background-color: white !important

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../common/index';
 
 @Component({
   selector: 'app-payment',
@@ -11,6 +12,14 @@ export class PaymentComponent implements OnInit {
     { name: 'POD Point', transactions: '16', tokens: '56'},
     { name: 'POD Point', transactions: '16', tokens: '56'},
     { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
+    { name: 'POD Point', transactions: '16', tokens: '56'},
     { name: 'POD Point', transactions: '16', tokens: '56'}
   ];
   paymentColumns = [
@@ -19,7 +28,7 @@ export class PaymentComponent implements OnInit {
     { name: 'Tokens' }
   ];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
 

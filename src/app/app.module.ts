@@ -52,8 +52,7 @@ registerLocaleData(localeDE);
     NgxDatatableModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'en-EN' },
-    // { provide: SWIPER_CONFIG, useValue: DEFAULT_SWIPER_CONFIG },
+    { provide: LOCALE_ID, useValue: 'en-EN' }
   ],
   entryComponents: [ModalDialogComponent],
   bootstrap: [AppComponent]

@@ -7,19 +7,19 @@ import { DataService } from '../common/index';
 })
 export class MnemonicComponent implements OnInit {
 
-  accountInfo: any = [];
+  mnemonicSeed: any = '';
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.getSeed();
   }
 
-
-  getAccountInfo() {
-    this.dataService.getAccountInfo().subscribe((data) => {
-         this.accountInfo = data;
-         console.log(this.accountInfo);
-         console.log(data.error);
+  getSeed() {
+    this.dataService.getSeed({
+    }).subscribe((data) => {
+      this.mnemonicSeed = data;
+      console.log(data);
     });
   }
 

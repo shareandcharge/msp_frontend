@@ -67,6 +67,17 @@ export class DataService {
         return this.execPOSTRequest('http://18.195.223.26:9090/api/v1/msp');
     }
 
+    getDrivers(params): Observable<any> {
+      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp/drivers');
+    }
+
+    getSeed(params): Observable<any> {
+      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp/wallet/seed');
+    }
+
+    getWalletHistory(params): Observable<any> {
+      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp/history');
+    }
 
     /********************* Handling Requests ***********************/
 

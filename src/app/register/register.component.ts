@@ -34,6 +34,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  getWalletHistory() {
+    this.dataService.getWalletHistory({
+    }).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
 
 }
 
