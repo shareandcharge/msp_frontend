@@ -10,6 +10,7 @@ declare let BroadcastChannel;
 export class DataService {
     private cache = {};
     private errorObject: any = {};
+    baseUrl = 'http://18.195.223.26:9090/api/v1/';
 
     constructor(private http: Http,
                 private broadcaster: Broadcaster,
@@ -31,52 +32,44 @@ export class DataService {
     /********************* END AUTH0 ***********************/
 
 
-    testGetRequest(): Observable<any> {
-      return this.execGETRequest('https://httpbin.org/get');
-    }
-
-    testPostRequest(): Observable<any> {
-        return this.execPOSTRequest('https://httpbin.org/post');
-    }
-
     // CPO
 
-    // getAccountInfo(): Observable<any> {
-    //   return this.execGETRequest('http://18.195.223.26:9090/api/v1/account/info');
-    // }
-
     getAccountWallet(): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/account/wallet');
+      return this.execGETRequest(this.baseUrl + 'account/wallet');
     }
 
     getAccountHistory(): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/account/history');
+      return this.execGETRequest(this.baseUrl + 'account/history');
     }
 
     getStations(): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/stations');
+      return this.execGETRequest(this.baseUrl + 'stations');
     }
 
     // MSP
 
     getAccountInfo(): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp');
+      return this.execGETRequest(this.baseUrl + 'msp');
     }
 
     setAccountInfo(params): Observable<any> {
-        return this.execPOSTRequest('http://18.195.223.26:9090/api/v1/msp');
+        return this.execPOSTRequest(this.baseUrl + 'msp');
     }
 
     getDrivers(params): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp/drivers');
+      return this.execGETRequest(this.baseUrl + 'drivers');
     }
 
     getSeed(params): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp/wallet/seed');
+      return this.execGETRequest(this.baseUrl + 'msp/wallet/seed');
     }
 
-    getWalletHistory(params): Observable<any> {
-      return this.execGETRequest('http://18.195.223.26:9090/api/v1/msp/history');
+    getWallet(walletId): Observable<any> {
+      return this.execGETRequest(this.baseUrl + 'wallet/' + walletId);
+    }
+
+    topUpWallet(walletId, ammount): Observable<any> {
+      return this.execPOSTRequest(this.baseUrl + 'token/mint/' + walletId + '?amount=' + ammount);
     }
 
     /********************* Handling Requests ***********************/

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from '../common/index';
 
 @Component({
@@ -9,7 +10,8 @@ export class MnemonicComponent implements OnInit {
 
   mnemonicSeed: any = '';
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              public router: Router) { }
 
   ngOnInit() {
     this.getSeed();
@@ -19,8 +21,11 @@ export class MnemonicComponent implements OnInit {
     this.dataService.getSeed({
     }).subscribe((data) => {
       this.mnemonicSeed = data;
-      console.log(data);
     });
+  }
+
+  continueToDrivers() {
+    this.router.navigate(['drivers']);
   }
 
 }

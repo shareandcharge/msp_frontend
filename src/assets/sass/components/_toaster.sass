@@ -33,6 +33,7 @@ $toaster-breakpoints: (small: 240px, medium: 480px, large: 768px) !default
     top: 0.0em
     font-weight: normal
     color: $toaster-text-color
+    display: none !important
 
 .toast-title
     font-weight: bold
@@ -40,6 +41,7 @@ $toaster-breakpoints: (small: 240px, medium: 480px, large: 768px) !default
 .toast-message
     -ms-word-wrap: break-word
     word-wrap: break-word
+    margin-top: 4px
     & a,
     & label
         color: $toaster-text-color
@@ -48,9 +50,9 @@ $toaster-breakpoints: (small: 240px, medium: 480px, large: 768px) !default
         text-decoration: none
 
 .toast-close-button
-    position: relative
-    right: -0.3em
-    top: -0.3em
+    position: absolute
+    right: 4px
+    top: 2px
     float: right
     font-size: 20px
     font-weight: bold
@@ -63,12 +65,12 @@ $toaster-breakpoints: (small: 240px, medium: 480px, large: 768px) !default
     z-index: 999
     &:hover,
     &:focus
-        color: #000000
-        text-decoration: none
-        cursor: pointer
-        opacity: 0.4
-        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40)
-        filter: alpha(opacity = 40)
+        // color: #000000
+        // text-decoration: none
+        // cursor: pointer
+        // opacity: 0.4
+        // -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40)
+        // filter: alpha(opacity = 40)
 
 /*Additional properties for button version
  *iOS requires the button element instead of an anchor tag.
@@ -151,11 +153,12 @@ button.toast-close-button
 
 #toast-container > div
     margin: 0 0 6px
-    padding: 15px 15px 15px 50px
+    // padding: 15px 15px 15px 50px
+    padding: 12px 16px 14px 16px
     width: 300px
-    -moz-border-radius: 3px 3px 3px 3px
-    -webkit-border-radius: 3px 3px 3px 3px
-    border-radius: 3px 3px 3px 3px
+    // -moz-border-radius: 3px 3px 3px 3px
+    // -webkit-border-radius: 3px 3px 3px 3px
+    // border-radius: 3px 3px 3px 3px
     background-position: 15px center
     background-repeat: no-repeat
     color: $toaster-text-color
@@ -164,12 +167,12 @@ button.toast-close-button
     // filter: alpha(opacity = 80)
 
 #toast-container > :hover
-    -moz-box-shadow: 0 0 12px #000000
-    -webkit-box-shadow: 0 0 12px #000000
-    box-shadow: 0 0 12px #000000
+    // -moz-box-shadow: 0 0 12px #000000
+    // -webkit-box-shadow: 0 0 12px #000000
+    // box-shadow: 0 0 12px #000000
     opacity: 1
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100)
-    filter: alpha(opacity = 100)
+    // -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100)
+    // filter: alpha(opacity = 100)
     cursor: pointer
 
 @each $color, $value in $toaster-icons
@@ -200,8 +203,8 @@ button.toast-close-button
         padding: 8px 8px 8px 50px
         width: 11em
     #toast-container .toast-close-button
-        right: -0.1em
-        top: -0.2em
+        // right: -0.1em
+        // top: -0.2em
     .toast-content
         width: 94%
 
@@ -210,8 +213,8 @@ button.toast-close-button
         padding: 8px 8px 8px 50px
         width: 18em
     #toast-container .toast-close-button
-        right: -0.1em
-        top: -0.2em
+        // right: -0.1em
+        // top: -0.2em
     .toast-content
         width: 94%
 

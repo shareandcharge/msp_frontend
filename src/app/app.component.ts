@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
     private dataService: DataService
   ) {
     this.toasterService = toasterService;
-
   }
 
   public ngOnInit() {

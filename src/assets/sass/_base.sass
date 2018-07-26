@@ -83,11 +83,20 @@ b
     font-weight: bold
 
 p
-  margin: 8px
+  margin: 8px 0
+
+h1,h2,h3,h4,h5,h6
+  margin: 8px 0
+
+h2
+  font-size: 20px
+  line-height: 22px
 
 .main-wrapper
+  @extend %clearfix
   margin-top: 168px
   margin-bottom: 168px
+
 // modal
 
 .ngx-modal .modal-content
@@ -227,7 +236,8 @@ input[type=text]
   -webkit-box-shadow: none
   box-shadow: none
 
-input[type=submit]
+input[type=submit],
+.sc-button
     -webkit-transition-duration: 350ms
     transition-duration: 350ms
     -webkit-transition-property: all
@@ -274,6 +284,7 @@ input[type=submit]
   width: 200px
   background: #fff
   padding: 16px
+  vertical-align: middle
 
 .pilot-project-wrapper
   background: rgba(0,70,102,0.8)
@@ -294,16 +305,20 @@ input[type=submit]
     display: block
 
 .mnemonic-seed-wrapper
+  max-width: 680px
   display: table
   margin-top: 48px
   background: #fff
   padding: 16px
-  // box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
-  p:last-child
+  h2
+    margin-bottom: 16px
+  .mnemonic-seed-phrase
     font-size: 18px
     font-weight: bold
-    margin-top: 16px
+    margin: 48px 0
+  .sc-button
+    float: right
 
 .account-info-list
   width: 480px
@@ -344,7 +359,7 @@ input[type=submit]
     position: relative
     padding-bottom: 0
     margin-bottom: 0
-    padding-top: 16px
+    padding-top: 24px
     margin-top: 16px
     border-bottom: 0
     border-top: 2px solid #fff
@@ -360,7 +375,7 @@ input[type=submit]
           position: absolute
           top: 0
           top: 1px
-          left: 42px
+          left: 46px
           z-index: 1032
           padding: 24px
           background-color: #fff
@@ -369,14 +384,14 @@ input[type=submit]
           box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
         button
           font-size: 20px
-          padding: 8px 10px 7px 10px
+          padding: 10px 12px 9px 12px
           border: 1px solid #004666
           background-color: #fff
           color: #004666
           cursor: pointer
           border-radius: 0
           display: block
-          margin: 12px 0
+          margin: 16px 0
           &:hover
             outline: none
             // border: 1px solid rgba(0, 70, 102, 0.9)
@@ -418,14 +433,21 @@ input[type=submit]
               float: inherit
               margin: 4px 2px
               display: inline-block
+            button:first-child
+              margin-left: 0
+            button:last-child
+              margin-right: 0
           & + button
             font-size: 14px
+            height: 44px
+            padding: 0 20px
             background: #004666
             color: #fff
             text-transform: uppercase
   .wallet-info__ammount
-    font-size: 20px
+    font-size: 30px
     font-weight: bold
+    margin: 10px 0
 .transaction-list
   li
     @extend %clearfix
@@ -445,6 +467,7 @@ input[type=submit]
   padding: 24px
   font-size: 0
   color: #fff
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
   span:first-child,
   span:last-child
     display: inline-block
@@ -479,6 +502,13 @@ input[type=submit]
   padding: 16px
   // box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+  i
+    vertical-align: middle
+    margin-right: 8px
+  span
+    vertical-align: middle
+    &.first-name
+      margin-right: 2px
 
 footer
   position: fixed
@@ -562,3 +592,11 @@ span.datatable-header-cell-label,
 .c-page-head
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.13) !important
   background-color: white !important
+
+.ngx-datatable.material.single-selection .datatable-body-row.active,
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material.multi-selection .datatable-body-row.active,
+.ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group,
+.ngx-datatable.material.multi-click-selection .datatable-body-row.active,
+.ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group
+  background-color: inherit

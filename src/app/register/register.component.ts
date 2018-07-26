@@ -6,7 +6,7 @@ import { DataService } from '../common/index';
   selector: 'app-register',
   templateUrl: './register.component.html'
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   accountInfo: any = [];
   accountInfoProp: any = [];
@@ -33,14 +33,6 @@ export class LoginComponent implements OnInit {
          console.log(this.accountInfo);
     });
   }
-
-  getWalletHistory() {
-    this.dataService.getWalletHistory({
-    }).subscribe((data) => {
-      console.log(data);
-    });
-  }
-
 
 }
 

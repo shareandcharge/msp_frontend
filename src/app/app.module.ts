@@ -16,12 +16,11 @@ import { ServicesModule} from './common/index';
 
 import { ModalDialogComponent } from './common/components/session-timeout/session-timeout-modal.component';
 
-import { LoginComponent } from './register/register.component';
+import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
 import { MnemonicComponent } from './mnemonic/mnemonic.component';
 import { DriversComponent } from './drivers/drivers.component';
-import { DriverDetailComponent } from './drivers/driver-detail/driver-detail.component';
 
 import { registerLocaleData } from '@angular/common';
 import localeDE from '@angular/common/locales/de';
@@ -31,13 +30,12 @@ registerLocaleData(localeDE);
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    RegisterComponent,
     AccountComponent,
     PaymentComponent,
     MnemonicComponent,
     DriversComponent,
-    ModalDialogComponent,
-    DriverDetailComponent
+    ModalDialogComponent
   ],
   imports: [
     BrowserModule,

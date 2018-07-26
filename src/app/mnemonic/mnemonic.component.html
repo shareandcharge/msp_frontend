@@ -7,6 +7,11 @@
   </div>
 
   <div class="mnemonic-seed-wrapper">
-      <p>Mnemonic Seed Phrase (recovery code):</p>
-      <p>{{mnemonicSeed.seed}}</p>
+      <h2>Mnemonic Seed Phrase</h2>
+      <p>Mnemonic Seed Phrase (recovery code) is a phrase that is used for recovering your password.
+        Please save it somewhere safe, and once you have, press "Continue".</p>
+      <p class="mnemonic-seed-phrase">{{mnemonicSeed.seed}}</p>
+      <button class="sc-button" (click)="continueToDrivers()">
+          Continue
+      </button>
   </div>

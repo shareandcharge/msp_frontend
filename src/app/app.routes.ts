@@ -1,21 +1,19 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthLoginGuard } from './auth/authLogin.guard';
-import { LoginComponent } from './register/register.component';
+import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
 import { MnemonicComponent } from './mnemonic/mnemonic.component';
 import { DriversComponent } from './drivers/drivers.component';
-import { DriverDetailComponent } from './drivers/driver-detail/driver-detail.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/register', pathMatch: 'full'},
-  { path: 'register', component: LoginComponent},
-  { path: 'account', component: AccountComponent},
-  { path: 'payment', component: PaymentComponent},
-  { path: 'mnemonic', component: MnemonicComponent},
-  { path: 'drivers', component: DriversComponent},
-  { path: 'driverDetail', component: DriverDetailComponent}
+  {path: '', redirectTo: '', pathMatch: 'full'},
+  { path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard]},
+  { path: 'mnemonic', component: MnemonicComponent, canActivate: [AuthGuard]},
+  { path: 'drivers', component: DriversComponent, canActivate: [AuthGuard]}
 ];
 
 // export const routes: Routes = [

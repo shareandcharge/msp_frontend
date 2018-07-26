@@ -9,6 +9,11 @@ import { DataService } from '../common/index';
 })
 export class DriversComponent implements OnInit {
 
+  driverDetail: any = [];
+  driverDetailActive: boolean = false;
+  transactionsActive: boolean = false;
+  tokensActive: boolean = false;
+  tokenValue = 0;
   selected = [];
 
   driversRows = [
@@ -47,6 +52,7 @@ export class DriversComponent implements OnInit {
 
   ngOnInit() {
     this.getDrivers();
+    // this.topUpWallet();
   }
 
   getDrivers() {
@@ -59,12 +65,44 @@ export class DriversComponent implements OnInit {
 
   onSelect({selected}) {
     console.log('Select Event', selected, this.selected);
-    this.router.navigate(['/driverDetail']);
+    this.driverDetail = JSON.parse(JSON.stringify(selected[0]));
+    this.driverDetailActive = true;
+    this.tokenValue = 0;
+    // this.getWallet(this.driverDetail.address);
+  }
+
+  backToDrivers() {
+    this.driverDetailActive = false;
+  }
+
+  addTokens() {
+    this.tokenValue = this.tokenValue += 100;
+  }
+
+  removeTokens() {
+    if (this.tokenValue >= 100) {
+      this.tokenValue = this.tokenValue -= 100;
+    }
+  }
+
+  getWallet(walletID) {
+    this.dataService.getWallet(walletID).subscribe((data) => {
+        console.log(data);
+    });
+  }
+
+  topUpWallet() {
+    this.dataService.topUpWallet(this.driverDetail.address, this.tokenValue).subscribe((data) => {
+        console.log(data);
+        this.transactionsActive = false;
+        this.tokensActive = false;
+        this.tokenValue = 0;
+        this.toasterService.pop('success', 'Success', 'You have successfuly added tokens to this driver.');
+    });
   }
 
   public popToast = () => {
     this.toasterService.pop('success', 'Success', 'TEST NOTIFICATION');
   }
-
 
 }
