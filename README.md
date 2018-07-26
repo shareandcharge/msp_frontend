@@ -13,3 +13,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Server Path
+
+Server path is located at src/app/common/services/dataService.ts - baseUrl.
