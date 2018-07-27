@@ -68,7 +68,7 @@ export class DriversComponent implements OnInit {
     this.driverDetail = JSON.parse(JSON.stringify(selected[0]));
     this.driverDetailActive = true;
     this.tokenValue = 0;
-    // this.getWallet(this.driverDetail.address);
+    this.getWallet(this.driverDetail.address);
   }
 
   backToDrivers() {

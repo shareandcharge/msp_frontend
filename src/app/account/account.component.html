@@ -42,15 +42,15 @@
       <div class="wallet-info">
         <h2>Wallet: </h2>
         <!-- <p>{{accountInfo.wallet}}</p> -->
-        <p class="wallet-info__ammount">18.25</p>
+        <p class="wallet-info__ammount">{{accountWallet.balance}}</p>
         <p>Network Tokens</p>
       </div>
       <div>
           <h2>Recent Transactions: </h2>
           <ul class="transaction-list">
-              <li *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]">
-                <span>0.32 Tokens</span>
-                <span>7.7.2018, 22:45</span>
+              <li *ngFor="let historyItem of accountHistory">
+                <span>{{historyItem.amount}} {{historyItem.currency}}</span>
+                <span>{{historyItem.timestamp}}</span>
               </li>
           </ul>
       </div>

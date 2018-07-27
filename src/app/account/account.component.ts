@@ -8,39 +8,39 @@ import { DataService } from '../common/index';
 export class AccountComponent implements OnInit {
 
   accountInfo: any = [];
-  accountWallet = [];
+  accountWallet = {
+    balance: 0,
+    currency: ''
+  };
   accountHistory = [];
-  // selectedAgent: any;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getAccountInfo();
-    // this.getAccountWallet();
-    // this.getAccountHistory();
+    this.getHistory();
   }
 
   getAccountInfo() {
     this.dataService.getAccountInfo().subscribe((data) => {
          this.accountInfo = data;
+         this.getWallet(data.wallet);
          console.log(this.accountInfo);
     });
   }
 
-  // CPO
+  getWallet(walletID) {
+    this.dataService.getWallet(walletID).subscribe((data) => {
+         this.accountWallet = data;
+         console.log(this.accountWallet);
+    });
+  }
 
-  // getAccountWallet() {
-  //   this.dataService.getAccountWallet().subscribe((data) => {
-  //        this.accountWallet = data;
-  //        console.log(this.accountWallet);
-  //   });
-  // }
-
-  // getAccountHistory() {
-  //   this.dataService.getAccountHistory().subscribe((data) => {
-  //        this.accountHistory = data;
-  //        console.log(this.accountHistory);
-  //   });
-  // }
+  getHistory() {
+    this.dataService.getHistory().subscribe((data) => {
+         this.accountHistory = data;
+         console.log(data);
+    });
+  }
 
 }

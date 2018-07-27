@@ -27,25 +27,6 @@ export class DataService {
         return prop ? this.cache[prop] : this.cache;
     }
 
-    /********************* AUTH0 ***************************/
-
-    /********************* END AUTH0 ***********************/
-
-
-    // CPO
-
-    getAccountWallet(): Observable<any> {
-      return this.execGETRequest(this.baseUrl + 'account/wallet');
-    }
-
-    getAccountHistory(): Observable<any> {
-      return this.execGETRequest(this.baseUrl + 'account/history');
-    }
-
-    getStations(): Observable<any> {
-      return this.execGETRequest(this.baseUrl + 'stations');
-    }
-
     // MSP
 
     getAccountInfo(): Observable<any> {
@@ -54,6 +35,10 @@ export class DataService {
 
     setAccountInfo(params): Observable<any> {
         return this.execPOSTRequest(this.baseUrl + 'msp');
+    }
+
+    getHistory(): Observable<any> {
+      return this.execGETRequest(this.baseUrl + 'msp/history');
     }
 
     getDrivers(params): Observable<any> {
