@@ -62,7 +62,7 @@
 
       <ngx-datatable-column>
         <ng-template let-column="column" ngx-datatable-header-template>
-            S & C Tokens
+            Tokens
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           <span (click)="selectRow(rowIndex)">{{row.balance}} {{row.token}}</span>
@@ -99,8 +99,8 @@
         <div>
           <div class="wallet-info wallet-info--driver-detail">
             <h2>Wallet: </h2>
-            <p class="wallet-info__ammount">{{driverDetail.balance}}</p>
-            <p>Network Tokens</p>
+            <p class="wallet-info__ammount">{{driverDetail.balance}} {{driverDetail.token}}</p>
+
           <div class="wallet-info__buttons">
             <div class="wallet-info__buttons__inner-wrapper">
               <button type="button" (click)="transactionsActive = !transactionsActive; tokensActive = false;">

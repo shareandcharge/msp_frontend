@@ -6,11 +6,13 @@ import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2
 import {Broadcaster} from './broadcasterService';
 declare let BroadcastChannel;
 import { environment } from '../../../environments/environment';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Injectable()
 export class DataService {
     private cache = {};
     private errorObject: any = {};
+    @BlockUI() blockUI: NgBlockUI;
     baseUrl = environment.apiUrl;
 
     constructor(private http: Http,
@@ -75,6 +77,7 @@ export class DataService {
 
     private execPOSTRequest(url: string, params: Object = {}, disabledToast?: boolean): Observable<any> {
         this.broadcaster.broadcast('httpRequest', true);
+        this.blockUI.start();
         return this.http.post(url, params)
             .map((response: Response) => this.handleResponse(response))
             .catch((error: any) => this.handleError(error, disabledToast));
@@ -82,6 +85,7 @@ export class DataService {
 
     private execGETRequest(url: string, params: Object = {}): Observable<any> {
         this.broadcaster.broadcast('httpRequest', true);
+        this.blockUI.start();
         return this.http.get(url, {params})
             .map((response: Response) => this.handleResponse(response))
             .catch((error: any) => this.handleError(error));
@@ -95,6 +99,9 @@ export class DataService {
 
         }
         this.broadcaster.broadcast('httpRequest', false);
+        setTimeout(() => {
+          this.blockUI.stop();
+        }, 100);
 
         if (res.status === 'ERROR') {
            // Handle errors thrown by back end

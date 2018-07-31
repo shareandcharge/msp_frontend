@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import {Router} from '@angular/router';
-import {ToasterModule, ToasterService, ToasterConfig} from 'angular2-toaster';
-import {ModalDialogService, SimpleModalComponent} from 'ngx-modal-dialog';
-import {ModalDialogComponent} from './common/components/session-timeout/session-timeout-modal.component';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { DataService } from './common/index';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,7 @@ import { DataService } from './common/index';
 })
 export class AppComponent implements OnInit {
 
+  @BlockUI() blockUI: NgBlockUI;
   private toasterService: ToasterService;
   public toasterConfig: ToasterConfig = new ToasterConfig ({
     showCloseButton: true,
@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   constructor (
     public router: Router,
     toasterService: ToasterService,
-    private modalDialogService: ModalDialogService,
     private viewContainer: ViewContainerRef,
     private dataService: DataService
   ) {
