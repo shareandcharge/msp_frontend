@@ -5,12 +5,13 @@ import '../rxjs-operators';
 import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2-toaster';
 import {Broadcaster} from './broadcasterService';
 declare let BroadcastChannel;
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class DataService {
     private cache = {};
     private errorObject: any = {};
-    baseUrl = 'http://18.195.223.26:9090/api/v1/';
+    baseUrl = environment.apiUrl;
 
     constructor(private http: Http,
                 private broadcaster: Broadcaster,
