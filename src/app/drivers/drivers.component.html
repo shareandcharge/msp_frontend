@@ -75,8 +75,8 @@
 
     <h2 class="page-title clickable" (click)="backToDrivers()" *ngIf="driverDetailActive">
       <i class="fas fa-chevron-left"></i>
-      <span class="first-name" *ngIf="driverDetail.about.firstname">{{driverDetail.about.firstname}}</span>
-      <span class="last-name" *ngIf="driverDetail.about.lastname">{{driverDetail.about.lastname}}</span>
+      <span class="first-name">{{driverDetail.about?.firstname}}</span>
+      <span class="last-name">{{driverDetail.about?.lastname}}</span>
     </h2>
 
     <div class="driver-detail-wrapper" *ngIf="driverDetailActive">
@@ -84,15 +84,15 @@
         <ul>
             <li>
                 <span>Address:</span>
-                <span>{{driverDetail.about.zipcode}} {{driverDetail.about.city}}, {{driverDetail.about.street}}</span>
+                <span>{{driverDetail.about?.zipcode}} {{driverDetail.about?.city}}, {{driverDetail.about?.street}}</span>
             </li>
             <li>
                 <span>E Mail Address:</span>
-                <span>{{driverDetail.about.email}}</span>
+                <span>{{driverDetail.about?.email}}</span>
             </li>
             <li>
                 <span>Phone:</span>
-                <span>{{driverDetail.about.phone}}</span>
+                <span>{{driverDetail.about?.phone}}</span>
             </li>
         </ul>
 

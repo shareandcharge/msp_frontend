@@ -72,6 +72,9 @@ export class DataService {
       }
 
         this.broadcaster.broadcast('httpRequest', false);
+        setTimeout(() => {
+          this.blockUI.stop();
+        }, 100);
         return Observable.throw(errMessage);
     }
 
