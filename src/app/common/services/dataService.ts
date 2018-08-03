@@ -69,7 +69,7 @@ export class DataService {
         if (!disabledToast) {
           this.toasterService.pop('error', 'Error', errMessage);
           this.logError(err).subscribe();
-      }
+        }
 
         this.broadcaster.broadcast('httpRequest', false);
         setTimeout(() => {
