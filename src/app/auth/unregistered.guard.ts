@@ -22,16 +22,13 @@ export class UnregisteredGuard implements CanActivate {
   getAccountInfo() {
 
     this.registeredFlag = localStorage.getItem('registeredMsp');
-    console.log(this.registeredFlag);
 
     if (this.registeredFlag !== 'true') {
       this.http.get('http://18.195.223.26:9090/api/v1/msp').subscribe(
         data => {
-          console.log('Success' );
           this.canProceed = false;
         },
         err => {
-          console.log('Error occured.');
           this.canProceed = true;
           this.router.navigate(['register']);
         }

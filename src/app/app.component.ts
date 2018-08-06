@@ -43,15 +43,12 @@ export class AppComponent implements OnInit {
           localStorage.setItem('registeredMsp', 'true');
           this.registeredFlag = localStorage.getItem('registeredMsp');
           this.router.navigate(['drivers']);
-          console.log(this.registeredFlag);
         },
         err => {
             this.router.navigate(['register']);
-            console.log('nema flag');
         }
       );
     } else {
-      console.log('ima flag');
       this.router.navigate(['drivers']);
     }
   }
@@ -59,7 +56,6 @@ export class AppComponent implements OnInit {
   getAccountInfo() {
     this.dataService.getAccountInfo().subscribe((data) => {
          this.accountInfo = data;
-         console.log(this.accountInfo);
     });
   }
 
