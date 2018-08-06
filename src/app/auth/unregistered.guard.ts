@@ -33,6 +33,7 @@ export class UnregisteredGuard implements CanActivate {
         err => {
           console.log('Error occured.');
           this.canProceed = true;
+          this.router.navigate(['register']);
         }
       );
     } else {
@@ -48,7 +49,6 @@ export class UnregisteredGuard implements CanActivate {
     } else {
         return true;
     }
-    // return true;
   }
 
 }

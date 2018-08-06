@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { DataService } from './common/index';
+import { Http, Response } from '@angular/http';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
     public router: Router,
     toasterService: ToasterService,
     private viewContainer: ViewContainerRef,
-    private dataService: DataService
+    private dataService: DataService,
+    private http: Http
   ) {
     this.toasterService = toasterService;
   }
@@ -34,10 +36,23 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     this.getAccountInfo();
     this.registeredFlag = localStorage.getItem('registeredMsp');
-    if (this.registeredFlag === 'true') {
-      this.router.navigate(['drivers']);
+
+    if (this.registeredFlag !== 'true') {
+      this.http.get('http://18.195.223.26:9090/api/v1/msp').subscribe(
+        data => {
+          localStorage.setItem('registeredMsp', 'true');
+          this.registeredFlag = localStorage.getItem('registeredMsp');
+          this.router.navigate(['drivers']);
+          console.log(this.registeredFlag);
+        },
+        err => {
+            this.router.navigate(['register']);
+            console.log('nema flag');
+        }
+      );
     } else {
-      this.router.navigate(['register']);
+      console.log('ima flag');
+      this.router.navigate(['drivers']);
     }
   }
 

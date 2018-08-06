@@ -29,7 +29,6 @@ export class RegisteredGuard implements CanActivate {
         data => {
           console.log('Success' );
           this.canProceed = true;
-          localStorage.setItem('registeredMsp', 'true');
         },
         err => {
           console.log('Error occured.');
@@ -49,7 +48,6 @@ export class RegisteredGuard implements CanActivate {
     } else {
         return true;
     }
-    // return true;
   }
 
 }
