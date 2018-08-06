@@ -7,7 +7,7 @@ import 'hammerjs';
 import { TabsModule } from 'ngx-tabs';
 import { routes } from './app.routes';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/appRouting.module';
+import { AppRoutingModule } from './appRouting.module';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalDialogModule } from 'ngx-modal-dialog';

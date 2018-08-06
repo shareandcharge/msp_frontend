@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
       'vat_number': this.accountInfo.vatNumber
     }).subscribe((data) => {
          console.log(this.accountInfo);
+         this.router.navigate(['mnemonic']);
     });
   }
 

@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   });
   title = 'MSP Dashboard app';
   accountInfo: any = [];
+  registeredFlag = '';
 
   constructor (
     public router: Router,
@@ -32,6 +33,12 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
     this.getAccountInfo();
+    this.registeredFlag = localStorage.getItem('registeredMsp');
+    if (this.registeredFlag === 'true') {
+      this.router.navigate(['drivers']);
+    } else {
+      this.router.navigate(['register']);
+    }
   }
 
   getAccountInfo() {

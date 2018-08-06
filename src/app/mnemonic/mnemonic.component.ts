@@ -25,6 +25,7 @@ export class MnemonicComponent implements OnInit {
   }
 
   continueToDrivers() {
+    localStorage.setItem('registeredMsp', 'true');
     this.router.navigate(['drivers']);
   }
 
