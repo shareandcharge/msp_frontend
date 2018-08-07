@@ -13,6 +13,7 @@ export class AccountComponent implements OnInit {
     currency: ''
   };
   accountHistory = [];
+  weiToEvCoin = Math.pow(10, 18);
 
   constructor(private dataService: DataService) { }
 
