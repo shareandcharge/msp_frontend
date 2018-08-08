@@ -40,6 +40,10 @@ export class DataService {
         return this.execPOSTRequest(this.baseUrl + 'msp');
     }
 
+    getSeed(params): Observable<any> {
+      return this.execGETRequest(this.baseUrl + 'msp/wallet/seed');
+    }
+
     getHistory(): Observable<any> {
       return this.execGETRequest(this.baseUrl + 'msp/history');
     }
@@ -48,8 +52,8 @@ export class DataService {
       return this.execGETRequest(this.baseUrl + 'drivers');
     }
 
-    getSeed(params): Observable<any> {
-      return this.execGETRequest(this.baseUrl + 'msp/wallet/seed');
+    getDriverTransactions(params): Observable<any> {
+      return this.execGETRequest(this.baseUrl + 'tx_history/' + params);
     }
 
     getWallet(walletId): Observable<any> {

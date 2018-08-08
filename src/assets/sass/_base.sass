@@ -284,7 +284,7 @@ input[type=submit],
           top: 1px
           left: 46px
           z-index: 1032
-          padding: 24px
+          // padding: 24px
           background-color: #fff
           color: #000
           box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
@@ -297,7 +297,7 @@ input[type=submit],
           cursor: pointer
           border-radius: 0
           display: block
-          margin: 13px 0
+          margin: 11px 0
           &:hover
             outline: none
             -webkit-box-shadow: 0 2px 5px 1px rgba(0,0,0,0.4)
@@ -311,11 +311,13 @@ input[type=submit],
             i
               margin: 0 4px
           span:first-child
-            width: 35%
+            width: 30%
             text-align: left
-          span:last-child
+            padding-left: 24px
+          span:nth-child(3)
             width: 45%
             text-align: right
+            padding-right: 24px
         .wallet-info__tokens
           padding: 24px 48px
           input
@@ -349,24 +351,70 @@ input[type=submit],
             color: #fff
             text-transform: uppercase
   .wallet-info__ammount
-    font-size: 30px
+    font-size: 24px
     font-weight: bold
     margin: 10px 0
+
 .transaction-list
-  max-height: 300px
-  overflow-y: auto
-  padding-right: 24px
-  margin-top: 16px
+  // max-height: 300px
+  // overflow-y: auto
+  &.transaction-list--my-account
+    max-height: 300px
+    overflow-y: auto
+    padding-right: 24px
+    li
+      padding: 10px 0
+      cursor: default
+      &:hover
+        background: inherit
+        color: inherit
   li
     @extend %clearfix
-    padding: 10px 0
-    border-bottom: 1px solid #fff
+    position: relative
+    border-bottom: 1px solid #000
+    cursor: pointer
+    &:hover
+      background: rgba(0, 70, 102, 0.8)
+      color: #fff
+    i
+      margin-right: 4px
     &:last-child
       border: 0
     span:first-child
       float: left
     span:last-child
       float: right
+  .transaction-list-item
+    padding: 10px 0
+
+.transaction-headline
+  font-weight: bold
+  border-bottom: 1px solid #000
+  margin: 0
+  padding: 16px 24px
+  text-align: left
+  i
+    margin-right: 4px
+    cursor: pointer
+
+.transaction-details
+  position: absolute
+  right: -361px
+  top: 0
+  background: #fff
+  width: 360px
+  text-align: left
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  background: rgba(0, 70, 102, 0.8)
+  color: #fff
+  cursor: default
+  .transaction-details-inner
+    padding: 8px 24px
+    div
+      margin-bottom: 16px
+      &:last-child
+        margin-bottom: 0
 
 .driver-detail-wrapper
   width: 480px

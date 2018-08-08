@@ -75,8 +75,8 @@
 
     <h2 class="page-title clickable" (click)="backToDrivers()" *ngIf="driverDetailActive">
       <i class="fas fa-chevron-left"></i>
-      <span class="first-name">{{driverDetail.about?.firstname}}</span>
-      <span class="last-name">{{driverDetail.about?.lastname}}</span>
+        <span class="first-name">{{driverDetail.about?.firstname}}</span>
+        <span class="last-name">{{driverDetail.about?.lastname}}</span>
     </h2>
 
     <div class="driver-detail-wrapper" *ngIf="driverDetailActive">
@@ -107,15 +107,48 @@
                   <i class="fas fa-info-circle"></i>
               </button>
               <div [hidden]="!transactionsActive" class="wallet-info__transactions">
-                <p class="bold">Latest transactions</p>
+                <p class="transaction-headline">
+                    <i class="fas fa-chevron-left" (click)="transactionsActive = false"></i>
+                    Latest transactions
+                </p>
                 <ul class="transaction-list">
-                    <li *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]">
-                        <span>1.45 CF</span>
-                        <span>
-                          <i class="fas fa-car"></i>
-                          <i class="fas fa-bolt"></i>
-                        </span>
-                        <span>7.7.2018, 22:45</span>
+                    <li *ngFor="let number of [0,1,2,3,4,5]; let a = index;">
+                        <div (click)="getTransactionDetails(a)" class="transaction-list-item">
+                          <span>1.45 CF</span>
+                          <span>
+                            <i class="fas fa-car"></i>
+                            <i class="fas fa-bolt"></i>
+                          </span>
+                          <span>7.7.2018, 22:45</span>
+                        </div>
+                        <div class="transaction-details" *ngIf="showTransactions && selectedTransactionIndex === a">
+                            <p class="transaction-headline">
+                              <i class="fas fa-chevron-left" (click)="showTransactions = false"></i>
+                              Transaction details
+                            </p>
+                            <div class="transaction-details-inner">
+                              <div>
+                                <p class="bold">Name of charging station:</p>
+                                <p>Westvirtel</p>
+                              </div>
+                              <div>
+                                <p class="bold">Address of charging station:</p>
+                                <p>Musterstrase 107</p>
+                              </div>
+                              <div>
+                                <p class="bold">Date:</p>
+                                <p>12.11.2017, 16:23</p>
+                              </div>
+                              <div>
+                                <p class="bold">Tariff of charging station:</p>
+                                <p>time-based, 4.40 GBP/h</p>
+                              </div>
+                              <div>
+                                <p class="bold">Duration:</p>
+                                <p>0:19:47</p>
+                              </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
               </div>
@@ -147,4 +180,4 @@
       </div>
     </div>
 
-    <div class="driver-detail-overlay" [hidden]="!transactionsActive && !tokensActive" (click)="transactionsActive = false; tokensActive = false"></div>
+    <div class="driver-detail-overlay" [hidden]="!transactionsActive && !tokensActive" (click)="transactionsActive = false; tokensActive = false; showTransactions = false"></div>
