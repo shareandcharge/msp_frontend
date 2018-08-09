@@ -13,11 +13,31 @@
       (select)='onSelect($event);'
       [selected]="selected"
       [selectionType]="'single'"
-      [sortType]="'multi'">
+      [sortType]="'multi'"
+      (sort)="onSort($event)">
 
-      <ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
+      <!-- <ngx-datatable-column *ngFor="let col of columns" name="{{col.name}}" prop="{{col.prop}}" class='{{col.prop}}' [sortable]="false" [cellClass]="getCellClass">
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                  <span class="datatable-header-cell draggable unselectable" (click)="onSort($event,col.prop, col.sortAscending = !col.sortAscending)" title="{{col.desc}}">
+                                      {{col.name}}
+                                  </span>
+                              </ng-template>
+          </ngx-datatable-column> -->
+
+
+      <!-- <ngx-datatable-column name="{{col.name}}" prop="{{col.prop}}" class='{{col.prop}}' [sortable]="false" [cellClass]="getCellClass">
+      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                              <span class="datatable-header-cell draggable unselectable" (click)="onSort($event,col.prop, col.sortAscending = !col.sortAscending)" title="{{col.desc}}">
+                                  {{col.name}}
+                              </span>
+                          </ng-template>
+      </ngx-datatable-column> -->
+
+      <ngx-datatable-column name="Name" prop="driverName" [sortable]="true" >
+        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+          <span (click)="onSort($event, driverName, sortAscending = !sortAscending)" >
             Name
+          </span>
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
             <span *ngIf="row.about" (click)="selectRow(rowIndex)">{{row.about.firstname}} {{row.about.lastname}}</span>
@@ -35,7 +55,7 @@
 
       <ngx-datatable-column>
         <ng-template let-column="column" ngx-datatable-header-template>
-            S & C Address
+            Driver S&C Address
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
             <span (click)="selectRow(rowIndex)">{{row.address}}</span>
@@ -88,11 +108,11 @@
             </li>
             <li>
                 <span>E Mail Address:</span>
-                <span>{{driverDetail.about?.email}}</span>
+                <span>{{driverDetail?.about.email}}</span>
             </li>
             <li>
                 <span>Phone:</span>
-                <span>{{driverDetail.about?.phone}}</span>
+                <span>{{driverDetail?.about.phone}}</span>
             </li>
         </ul>
 
@@ -103,54 +123,57 @@
 
           <div class="wallet-info__buttons">
             <div class="wallet-info__buttons__inner-wrapper">
-              <button type="button" (click)="transactionsActive = !transactionsActive; tokensActive = false;">
+              <button type="button" (click)="transactionsActive = !transactionsActive; tokensActive = false;" [disabled]="latestTransactions.length === 0">
                   <i class="fas fa-info-circle"></i>
               </button>
-              <div [hidden]="!transactionsActive" class="wallet-info__transactions">
+              <div [hidden]="!transactionsActive || latestTransactions.length === 0" class="wallet-info__transactions">
                 <p class="transaction-headline">
                     <i class="fas fa-chevron-left" (click)="transactionsActive = false"></i>
                     Latest transactions
                 </p>
-                <ul class="transaction-list">
-                    <li *ngFor="let number of [0,1,2,3,4,5]; let a = index;">
-                        <div (click)="getTransactionDetails(a)" class="transaction-list-item">
-                          <span>1.45 CF</span>
-                          <span>
-                            <i class="fas fa-car"></i>
-                            <i class="fas fa-bolt"></i>
-                          </span>
-                          <span>7.7.2018, 22:45</span>
-                        </div>
-                        <div class="transaction-details" *ngIf="showTransactions && selectedTransactionIndex === a">
-                            <p class="transaction-headline">
-                              <i class="fas fa-chevron-left" (click)="showTransactions = false"></i>
-                              Transaction details
-                            </p>
-                            <div class="transaction-details-inner">
-                              <div>
-                                <p class="bold">Name of charging station:</p>
-                                <p>Westvirtel</p>
+                <div class="transaction-list__wrapper">
+                  <ul class="transaction-list">
+                      <li *ngFor="let latestTransaction of latestTransactions; let a = index;">
+                          <div (click)="getTransactionDetails(a)" class="transaction-list-item">
+                            <span>{{latestTransaction.finalPrice}} {{latestTransaction.currency}}</span>
+                            <span>
+                              <i class="fas fa-car"></i>
+                              <i class="fas fa-bolt"></i>
+                            </span>
+                            <span>{{latestTransaction.start | date:'medium'}}</span>
+                          </div>
+                          <div class="transaction-details" *ngIf="showTransactions && selectedTransactionIndex === a">
+                              <p class="transaction-headline">
+                                <i class="fas fa-chevron-left" (click)="showTransactions = false"></i>
+                                Transaction details
+                              </p>
+                              <div class="transaction-details-inner">
+                                <div>
+                                  <p class="bold">Name of charging station:</p>
+                                  <p>{{latestTransaction.evseId}}</p>
+                                </div>
+                                <div>
+                                  <p class="bold">Address of charging station:</p>
+                                  <p>{{latestTransaction.scId}}</p>
+                                </div>
+                                <div>
+                                  <p class="bold">Date:</p>
+                                  <p>{{latestTransaction.start}}</p>
+                                </div>
+                                <div>
+                                  <p class="bold">Tariff of charging station:</p>
+                                  <p>{{latestTransaction.tariff}}</p>
+                                </div>
+                                <div>
+                                  <p class="bold">Duration:</p>
+                                  <p>{{calculateTotalTime(latestTransaction.start, latestTransaction.end)}}</p>
+                                </div>
+                                <div class="transaction-details-inner__amount">{{latestTransaction.finalPrice}} {{latestTransaction.currency}}</div>
                               </div>
-                              <div>
-                                <p class="bold">Address of charging station:</p>
-                                <p>Musterstrase 107</p>
-                              </div>
-                              <div>
-                                <p class="bold">Date:</p>
-                                <p>12.11.2017, 16:23</p>
-                              </div>
-                              <div>
-                                <p class="bold">Tariff of charging station:</p>
-                                <p>time-based, 4.40 GBP/h</p>
-                              </div>
-                              <div>
-                                <p class="bold">Duration:</p>
-                                <p>0:19:47</p>
-                              </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                          </div>
+                      </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="wallet-info__buttons__inner-wrapper">

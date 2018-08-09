@@ -20,6 +20,9 @@ export class DriversComponent implements OnInit {
   driversColumns = [];
   selectedTransactionIndex: any;
   showTransactions: any;
+  latestTransactions = [];
+  driverName: any;
+  sortAscending: boolean = true;
 
 
   private toasterService: ToasterService;
@@ -34,6 +37,11 @@ export class DriversComponent implements OnInit {
     this.getDrivers();
   }
 
+  private onSort(event: any, column: string, sortingType: boolean) {
+  // here update the resilt rows as per assending or desc
+    console.log('Test');
+  }
+
   getDrivers() {
     this.dataService.getDrivers({
     }).subscribe((data) => {
@@ -44,6 +52,7 @@ export class DriversComponent implements OnInit {
 
   getDriverTransactions(driverId) {
     this.dataService.getDriverTransactions(driverId).subscribe((data) => {
+        this.latestTransactions = data;
         console.log(data);
     });
   }
@@ -94,6 +103,22 @@ export class DriversComponent implements OnInit {
           console.log(this.selectedDriverIndex);
         }, 1000);
       });
+  }
+
+  calculateTotalTime(startDate, endDate) {
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+    const totaltime =  endDate - startDate;
+    let day, hour, minute, seconds;
+    seconds = Math.floor(totaltime / 1000);
+    minute = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+    hour = Math.floor(minute / 60);
+    minute = minute % 60;
+    day = Math.floor(hour / 24);
+    hour = hour % 24;
+
+    return day + ':' + hour + ':' + minute % 60 + ':' + seconds % 60;
   }
 
 

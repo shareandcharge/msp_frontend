@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DataService } from '../common';
-import {Http, Response} from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { environment } from './../../environments/environment';
 
 import { Router } from '@angular/router';
 
@@ -24,7 +25,7 @@ export class UnregisteredGuard implements CanActivate {
     this.registeredFlag = localStorage.getItem('registeredMsp');
 
     if (this.registeredFlag !== 'true') {
-      this.http.get('http://18.195.223.26:9090/api/v1/msp').subscribe(
+      this.http.get(environment.apiUrl + 'msp').subscribe(
         data => {
           this.canProceed = false;
         },
