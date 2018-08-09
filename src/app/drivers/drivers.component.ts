@@ -81,12 +81,12 @@ export class DriversComponent implements OnInit {
   }
 
   addTokens() {
-    this.tokenValue = this.tokenValue += 100;
+    this.tokenValue = Number(this.tokenValue) + 100;
   }
 
   removeTokens() {
     if (this.tokenValue >= 100) {
-      this.tokenValue = this.tokenValue -= 100;
+      this.tokenValue = Number(this.tokenValue) - 100;
     }
   }
 
