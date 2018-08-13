@@ -9,81 +9,42 @@
       [headerHeight]="48"
       [footerHeight]="48"
       [rowHeight]="48"
-      [limit]="10"
+      [limit]="8"
       (select)='onSelect($event);'
       [selected]="selected"
-      [selectionType]="'single'"
-      [sortType]="'multi'"
-      (sort)="onSort($event)">
+      [selectionType]="'single'">
 
-      <!-- <ngx-datatable-column *ngFor="let col of columns" name="{{col.name}}" prop="{{col.prop}}" class='{{col.prop}}' [sortable]="false" [cellClass]="getCellClass">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                                  <span class="datatable-header-cell draggable unselectable" (click)="onSort($event,col.prop, col.sortAscending = !col.sortAscending)" title="{{col.desc}}">
-                                      {{col.name}}
-                                  </span>
-                              </ng-template>
-          </ngx-datatable-column> -->
-
-
-      <!-- <ngx-datatable-column name="{{col.name}}" prop="{{col.prop}}" class='{{col.prop}}' [sortable]="false" [cellClass]="getCellClass">
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                              <span class="datatable-header-cell draggable unselectable" (click)="onSort($event,col.prop, col.sortAscending = !col.sortAscending)" title="{{col.desc}}">
-                                  {{col.name}}
-                              </span>
-                          </ng-template>
-      </ngx-datatable-column> -->
-
-      <ngx-datatable-column name="Name" prop="driverName" [sortable]="true" >
-        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-          <span (click)="onSort($event, driverName, sortAscending = !sortAscending)" >
-            Name
-          </span>
-        </ng-template>
+      <ngx-datatable-column name="Name" prop="about.firstname" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
             <span *ngIf="row.about">{{row.about.firstname}} {{row.about.lastname}} </span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
-            Address
-        </ng-template>
+      <ngx-datatable-column name="Address" prop="about.zipcode" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           <span *ngIf="row.about">{{row.about.zipcode}} {{row.about.city}}<span *ngIf="row.about.zipcode || row.about.city" class="comma">,</span> {{row.about.street}} </span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
-            Driver S&C Address
-        </ng-template>
+      <ngx-datatable-column name="Driver S&C Address" prop="index" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-            <span>{{row.address}}</span>
+          <span>{{row.address}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
-           E-mail
-        </ng-template>
+      <ngx-datatable-column name="E-mail" prop="email" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           <span>{{row.email}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
-            Phone
-        </ng-template>
+      <ngx-datatable-column name="Phone" prop="about.phone" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           <span *ngIf="row.about">{{row.about.phone}}</span>
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
-            Tokens
-        </ng-template>
+      <ngx-datatable-column name="Tokens" prop="balance" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
           <span>{{row.balance}} {{row.token}}</span>
         </ng-template>

@@ -24,6 +24,14 @@ export class DriversComponent implements OnInit {
   driverName: any;
   sortAscending: boolean = true;
 
+  rows = [];
+
+  paymentColumns = [
+    { name: 'Name' },
+    { name: 'Transactions' },
+    { name: 'Tokens' }
+  ];
+
 
   private toasterService: ToasterService;
 

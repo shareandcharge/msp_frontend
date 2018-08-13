@@ -11,7 +11,7 @@
       [rowHeight]="48"
       [limit]="8">
 
-      <ngx-datatable-column *ngFor="let column of paymentColumns" name={{column.name}}>
+    <ngx-datatable-column *ngFor="let column of paymentColumns" name={{column.name}}>
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
