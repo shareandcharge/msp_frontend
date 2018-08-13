@@ -53,7 +53,7 @@
                       <span>
                           <i class="fas fa-plus-square" *ngIf="this.accountInfo.wallet === historyItem.to_addr"></i>
                           <i class="fas fa-minus-square"*ngIf="this.accountInfo.wallet !== historyItem.to_addr"></i>
-                          {{historyItem.amount / weiToEvCoin}}
+                          {{toFixedNotation(historyItem.amount / weiToEvCoin)}}
                       </span>
                       <span class="evCoin" *ngIf="historyItem.currency ===  'wei'">EV Coin</span>
                       <span class="evCoin" *ngIf="historyItem.currency !==  'wei'">{{historyItem.currency}}</span>
