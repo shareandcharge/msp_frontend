@@ -40,7 +40,7 @@
           </span>
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-            <span *ngIf="row.about" (click)="selectRow(rowIndex)">{{row.about.firstname}} {{row.about.lastname}}</span>
+            <span *ngIf="row.about">{{row.about.firstname}} {{row.about.lastname}} </span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -49,7 +49,7 @@
             Address
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <span *ngIf="row.about" (click)="selectRow(rowIndex)">{{row.about.zipcode}} {{row.about.city}}, {{row.about.street}} </span>
+          <span *ngIf="row.about">{{row.about.zipcode}} {{row.about.city}}<span *ngIf="row.about.zipcode || row.about.city" class="comma">,</span> {{row.about.street}} </span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -58,7 +58,7 @@
             Driver S&C Address
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-            <span (click)="selectRow(rowIndex)">{{row.address}}</span>
+            <span>{{row.address}}</span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -67,7 +67,7 @@
            E-mail
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <span (click)="selectRow(rowIndex)">{{row.email}}</span>
+          <span>{{row.email}}</span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -76,7 +76,7 @@
             Phone
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <span *ngIf="row.about" (click)="selectRow(rowIndex)">{{row.about.phone}}</span>
+          <span *ngIf="row.about">{{row.about.phone}}</span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -85,7 +85,7 @@
             Tokens
         </ng-template>
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <span (click)="selectRow(rowIndex)">{{row.balance}} {{row.token}}</span>
+          <span>{{row.balance}} {{row.token}}</span>
         </ng-template>
       </ngx-datatable-column>
 
@@ -95,31 +95,36 @@
 
     <h2 class="page-title clickable" (click)="backToDrivers()" *ngIf="driverDetailActive">
       <i class="fas fa-chevron-left"></i>
-        <span class="first-name">{{driverDetail.about?.firstname}}</span>
-        <span class="last-name">{{driverDetail.about?.lastname}}</span>
+        <span class="first-name">{{driverDetail?.about?.firstname}}</span>
+        <span class="last-name">{{driverDetail?.about?.lastname}}</span>
     </h2>
 
     <div class="driver-detail-wrapper" *ngIf="driverDetailActive">
 
         <ul>
-            <li>
+            <li *ngIf="driverDetail?.about?.street || driverDetail?.about?.city || driverDetail?.about?.zipcode">
                 <span>Address:</span>
-                <span>{{driverDetail.about?.street}}, {{driverDetail.about?.city}} {{driverDetail.about?.zipcode}}</span>
+                <span>{{driverDetail?.about?.street}}<span *ngIf="driverDetail?.about?.street" class="comma">,</span> {{driverDetail?.about?.city}} {{driverDetail?.about?.zipcode}}</span>
             </li>
-            <li>Number Street, City, Zipcode, Country (Code)
+            <li *ngIf="driverDetail?.email">
                 <span>E Mail Address:</span>
-                <span>{{driverDetail?.about.email}}</span>
+                <span>{{driverDetail?.email}}</span>
             </li>
-            <li>
+            <li *ngIf="driverDetail?.about?.phone">
                 <span>Phone:</span>
-                <span>{{driverDetail?.about.phone}}</span>
+                <span>{{driverDetail?.about?.phone}}</span>
             </li>
         </ul>
 
         <div>
           <div class="wallet-info wallet-info--driver-detail">
             <h2>Wallet: </h2>
-            <p class="wallet-info__ammount">{{driverDetail.balance}} {{driverDetail.token}}</p>
+            <p class="wallet-info__ammount">{{driverDetail?.balance}} {{driverDetail?.token}}</p>
+
+            <!-- <span tooltip="Content to be shown in the tooltip"
+            [tooltipDisabled]="false"
+            [tooltipAnimation]="true"
+            tooltipPlacement="top"></span> -->
 
           <div class="wallet-info__buttons">
             <div class="wallet-info__buttons__inner-wrapper">

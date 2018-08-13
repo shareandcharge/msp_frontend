@@ -12,6 +12,7 @@ import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { BlockUIModule } from 'ng-block-ui';
+import { TooltipModule } from 'ngx-tooltip';
 
 import { ServicesModule} from './common/index';
 
@@ -49,7 +50,8 @@ registerLocaleData(localeDE);
     ToasterModule.forRoot(),
     ModalDialogModule.forRoot(),
     NgxDatatableModule,
-    BlockUIModule.forRoot()
+    BlockUIModule.forRoot(),
+    TooltipModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en-EN' }

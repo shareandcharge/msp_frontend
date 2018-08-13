@@ -63,13 +63,13 @@ export class DriversComponent implements OnInit {
     this.driverDetailActive = true;
     this.tokenValue = 0;
     this.getDriverTransactions(this.driverDetail.address);
+    this.selectedDriverIndex = selected[0].index;
   }
 
-  selectRow(index) {
-    this.selectedDriverIndex = index;
-    // console.log(index);
-    console.log(this.selectedDriverIndex);
-  }
+  // selectRow(index) {
+  //   this.selectedDriverIndex = index;
+  //   console.log(this.selectedDriverIndex);
+  // }
 
   getTransactionDetails(index) {
     this.selectedTransactionIndex = index;
