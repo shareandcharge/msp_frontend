@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../common/index';
+import { DataService } from '../common/index';
+import { environment } from './../../environments/environment';
+import { ToasterModule, ToasterService, ToasterContainerComponent } from 'angular2-toaster';
 
 @Component({
   selector: 'app-payment',
@@ -7,31 +9,72 @@ import {DataService} from '../common/index';
 })
 export class PaymentComponent implements OnInit {
 
-  paymentRows = [
-    { name: 'POD Point', transactions: '11', tokens: '56'},
-    { name: 'POD Point', transactions: '12', tokens: '56'},
-    { name: 'POD Point', transactions: '13', tokens: '56'},
-    { name: 'POD Point', transactions: '14', tokens: '56'},
-    { name: 'POD Point', transactions: '15', tokens: '56'},
-    { name: 'POD Point', transactions: '16', tokens: '56'},
-    { name: 'POD Point', transactions: '17', tokens: '56'},
-    { name: 'POD Point', transactions: '18', tokens: '56'},
-    { name: 'POD Point', transactions: '19', tokens: '56'},
-    { name: 'POD Point', transactions: '20', tokens: '56'},
-    { name: 'POD Point', transactions: '21', tokens: '56'},
-    { name: 'POD Point', transactions: '22', tokens: '56'},
-    { name: 'POD Point', transactions: '23', tokens: '56'}
-  ];
-  paymentColumns = [
-    { name: 'Name' },
-    { name: 'Transactions' },
-    { name: 'Tokens' }
-  ];
+  paymentPending: any = [];
+  paymentCompleted: any = [];
+  selected = [];
+  baseUrl = environment.apiUrl;
 
-  constructor(private dataService: DataService) { }
+  paymentRows = [];
+  paymentColumns = [];
+
+  constructor(private dataService: DataService,
+              private toasterService: ToasterService) { }
 
   ngOnInit() {
+    // this.getCpoPaymentRequests();
+    this.getCpoPaymentRequestsPending();
+    this.getCpoPaymentRequestsCompleted();
+  }
 
+  getCpoPaymentRequests() {
+    this.dataService.getCpoPaymentRequests().subscribe((data) => {
+        console.log(data);
+    });
+  }
+
+  getCpoPaymentRequestsPending() {
+    this.dataService.getCpoPaymentRequestsPending().subscribe((data) => {
+        console.log(data);
+        this.paymentPending = data;
+    });
+  }
+
+  getCpoPaymentRequestsCompleted() {
+    this.dataService.getCpoPaymentRequestsCompleted().subscribe((data) => {
+        console.log(data);
+        this.paymentCompleted = data;
+    });
+  }
+
+  setPaymentStatus(reimbursementId) {
+    this.dataService.setPaymentStatus(reimbursementId).subscribe((data) => {
+        console.log(data);
+        this.toasterService.pop('success', 'Success', 'Payment status successfully set.');
+        this.getCpoPaymentRequestsPending();
+        this.getCpoPaymentRequestsCompleted();
+    });
+  }
+
+  // getCdrs(reimbursementId) {
+  //   this.dataService.getCdrs(reimbursementId).subscribe((data) => {
+  //       console.log(data);
+  //   });
+  // }
+
+  getInvoice(serverAddress, reimbursementId) {
+    this.dataService.getInvoice(serverAddress, reimbursementId).subscribe((data) => {
+        const replacedServerAddress = data.redirect.replace('http://{{server_addr}}:{{server_port}}', serverAddress);
+        const finalInvoiceLink = replacedServerAddress.replace('/api/v1', '');
+        window.open(finalInvoiceLink, '_blank');
+      });
+  }
+
+  onSelectPending({selected}) {
+    console.log('Select Event', selected, this.selected);
+  }
+
+  onSelectCompleted({selected}) {
+    console.log('Select Event', selected, this.selected);
   }
 
 }

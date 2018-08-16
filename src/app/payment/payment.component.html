@@ -1,39 +1,129 @@
-<h2 class="page-title">CPO Payment Requests</h2>
-
+<h2 class="page-title">Pending CPO Payment Requests</h2>
 <div>
   <ngx-datatable
-      [rows]="paymentRows"
-      [columns]="paymentColumns"
-      class="material striped"
-      [columnMode]="'force'"
-      [headerHeight]="48"
-      [footerHeight]="48"
-      [rowHeight]="48"
-      [limit]="8">
+    [rows]="paymentPending"
+    [columns]="paymentColumns"
+    class="payment-table material striped"
+    [columnMode]="'force'"
+    [headerHeight]="48"
+    [footerHeight]="48"
+    [rowHeight]="48"
+    [limit]="8"
+    (select)='onSelectPending($event);'
+    [selected]="selected"
+    [selectionType]="'single'">
 
-    <ngx-datatable-column *ngFor="let column of paymentColumns" name={{column.name}}>
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
+    <ngx-datatable-column name="Name" prop="cpo_name" [sortable]="true">
+      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          Volkswagen Corporation
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="Payment Made">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <button type="button" class="ngx-table-button">
+    <ngx-datatable-column name="Transactions" prop="txs_number" [sortable]="true">
+      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          <!-- {{row.server_addr}}/view_cdrs/{{row.reimbursement_id}} -->
+          {{row.txs_number}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Tokens" prop="amount" [sortable]="true">
+      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          {{row.amount}} {{row.currency}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="false">
+      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          <button type="button" class="ngx-table-button" (click)="setPaymentStatus(row.reimbursement_id)">
               <i class="fas fa-thumbs-up"></i>
               <span>Payment Made</span>
+          </button>
+      </ng-template>>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="false">
+      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          <a href href="{{baseUrl}}view_cdrs/{{row.reimbursement_id}}" download target="_blank">
+            <button type="button" class="ngx-table-button">
+                <i class="fas fa-download"></i>
+                <span>CDR</span>
+            </button>
+          </a>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [sortable]="false">
+      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          <button type="button" class="ngx-table-button" (click)="getInvoice(row.server_addr, row.reimbursement_id)">
+              <i class="fas fa-download"></i>
+              <span>Invoice</span>
           </button>
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="CDR Download">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <button type="button" class="ngx-table-button">
+  </ngx-datatable>
+</div>
+
+<h2 class="page-title"> Completed CPO Payment Requests</h2>
+
+<div>
+    <ngx-datatable
+      [rows]="paymentCompleted"
+      [columns]="paymentColumns"
+      class="payment-table material striped"
+      [columnMode]="'force'"
+      [headerHeight]="48"
+      [footerHeight]="48"
+      [rowHeight]="48"
+      [limit]="8"
+      (select)='onSelectCompleted($event);'
+      [selected]="selected"
+      [selectionType]="'single'">
+
+      <ngx-datatable-column name="Name" prop="cpo_name" [sortable]="true">
+        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            Volkswagen Corporation
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Transactions" prop="txs_number" [sortable]="true">
+        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            {{row.txs_number}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Tokens" prop="amount" [sortable]="true">
+        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            {{row.amount}} {{row.currency}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [sortable]="false">
+        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            <i class="fas fa-check"></i>
+            <span>Paid</span>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [sortable]="false">
+        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            <a href href="{{baseUrl}}view_cdrs/{{row.reimbursement_id}}" download target="_blank">
+              <button type="button" class="ngx-table-button">
+                  <i class="fas fa-download"></i>
+                  <span>CDR</span>
+              </button>
+            </a>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [sortable]="false">
+        <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            <button type="button" class="ngx-table-button" (click)="getInvoice(row.server_addr, row.reimbursement_id)">
                 <i class="fas fa-download"></i>
-                <span>CDR Download</span>
+                <span>Invoice</span>
             </button>
         </ng-template>
       </ngx-datatable-column>
 
-  </ngx-datatable>
-</div>
+    </ngx-datatable>
+  </div>
