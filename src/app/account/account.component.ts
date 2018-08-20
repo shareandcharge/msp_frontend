@@ -53,6 +53,7 @@ export class AccountComponent implements OnInit {
 
   killMSP() {
     this.dataService.killMSP().subscribe((data) => {
+         localStorage.clear();
          console.log(data);
     });
   }

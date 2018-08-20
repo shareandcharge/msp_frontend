@@ -40,6 +40,10 @@ export class DataService {
         return this.execPOSTRequest(this.baseUrl + 'msp');
     }
 
+    generateWallet(): Observable<any> {
+      return this.execPOSTRequest(this.baseUrl + 'msp/wallet/generate');
+    }
+
     getSeed(params): Observable<any> {
       return this.execGETRequest(this.baseUrl + 'msp/wallet/seed');
     }

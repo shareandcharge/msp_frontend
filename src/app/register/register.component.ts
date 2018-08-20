@@ -19,6 +19,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  generateWallet() {
+    this.dataService.generateWallet().subscribe((data) => {
+    });
+  }
+
   setAccountInfo() {
     this.dataService.setAccountInfo({
       'name': this.accountInfo.name,
@@ -31,7 +36,10 @@ export class RegisterComponent implements OnInit {
       'vat_number': this.accountInfo.vatNumber
     }).subscribe((data) => {
          console.log(this.accountInfo);
-         this.router.navigate(['mnemonic']);
+         this.generateWallet();
+         setTimeout(() => {
+          this.router.navigate(['mnemonic']);
+        }, 500);
     });
   }
 
