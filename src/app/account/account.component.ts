@@ -20,6 +20,7 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.getAccountInfo();
     this.getHistory();
+    // this.killMSP();
   }
 
   getAccountInfo() {
@@ -45,9 +46,15 @@ export class AccountComponent implements OnInit {
   }
 
   toFixedNotation(number) {
-    const initialnumber = Number.parseFloat(number).toFixed(2);
+    const initialnumber = Number.parseFloat(number).toFixed(6);
     const formatedNumber = initialnumber.toString();
     return formatedNumber;
+  }
+
+  killMSP() {
+    this.dataService.killMSP().subscribe((data) => {
+         console.log(data);
+    });
   }
 
 }

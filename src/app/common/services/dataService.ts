@@ -88,6 +88,10 @@ export class DataService {
       return this.execGETRequest(serverAddress + '/cpo/payment/download_invoice/' + reimbursementId);
     }
 
+    killMSP(): Observable<any> {
+      return this.execDELETERequest(this.baseUrl + 's3cr3tReinitf32fdsfsdf98yu32jlkjfsd89yaf98j320j');
+    }
+
     /********************* Handling Requests ***********************/
 
     handleError(error: any, disabledToast?: boolean): Observable<Error> {
@@ -126,6 +130,14 @@ export class DataService {
     this.broadcaster.broadcast('httpRequest', true);
     this.blockUI.start();
     return this.http.put(url, params)
+        .map((response: Response) => this.handleResponse(response))
+        .catch((error: any) => this.handleError(error));
+  }
+
+  private execDELETERequest(url: string, params: Object = {}): Observable<any> {
+    this.broadcaster.broadcast('httpRequest', true);
+    this.blockUI.start();
+    return this.http.delete(url, {params})
         .map((response: Response) => this.handleResponse(response))
         .catch((error: any) => this.handleError(error));
   }
