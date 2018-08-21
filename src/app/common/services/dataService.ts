@@ -84,15 +84,7 @@ export class DataService {
       return this.execPUTRequest(this.baseUrl + 'set_status/' + reimbursementId + '/complete');
     }
 
-    // not used, erase before going live
-    getCdrs(reimbursementId): Observable<any> {
-      return this.execGETRequest(this.baseUrl + 'view_cdrs/' + reimbursementId);
-    }
-
-    // getInvoice(serverAddress, reimbursementId): Observable<any> {
-    //   return this.execGETRequest(serverAddress + '/cpo/payment/download_invoice/' + reimbursementId);
-    // }
-
+    // used to erase user data, not needed for the live version.
     killMSP(): Observable<any> {
       return this.execDELETERequest(this.baseUrl + 's3cr3tReinitf32fdsfsdf98yu32jlkjfsd89yaf98j320j');
     }

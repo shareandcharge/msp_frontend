@@ -27,21 +27,18 @@ export class AccountComponent implements OnInit {
     this.dataService.getAccountInfo().subscribe((data) => {
          this.accountInfo = data;
          this.getWallet(data.wallet);
-         console.log(this.accountInfo);
     });
   }
 
   getWallet(walletID) {
     this.dataService.getWallet(walletID).subscribe((data) => {
          this.accountWallet = data;
-         console.log(this.accountWallet);
     });
   }
 
   getHistory() {
     this.dataService.getHistory().subscribe((data) => {
          this.accountHistory = data;
-         console.log(data);
     });
   }
 
@@ -54,7 +51,6 @@ export class AccountComponent implements OnInit {
   killMSP() {
     this.dataService.killMSP().subscribe((data) => {
          localStorage.clear();
-         console.log(data);
     });
   }
 

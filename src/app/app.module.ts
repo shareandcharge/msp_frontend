@@ -16,8 +16,6 @@ import { TooltipModule } from 'ngx-tooltip';
 
 import { ServicesModule} from './common/index';
 
-import { ModalDialogComponent } from './common/components/session-timeout/session-timeout-modal.component';
-
 import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -36,8 +34,7 @@ registerLocaleData(localeDE);
     AccountComponent,
     PaymentComponent,
     MnemonicComponent,
-    DriversComponent,
-    ModalDialogComponent
+    DriversComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +53,6 @@ registerLocaleData(localeDE);
   providers: [
     { provide: LOCALE_ID, useValue: 'en-EN' }
   ],
-  entryComponents: [ModalDialogComponent],
   bootstrap: [AppComponent]
 })
 

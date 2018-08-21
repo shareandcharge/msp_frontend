@@ -45,39 +45,26 @@ export class DriversComponent implements OnInit {
     this.getDrivers();
   }
 
-  private onSort(event: any, column: string, sortingType: boolean) {
-  // here update the resilt rows as per assending or desc
-    console.log('Test');
-  }
-
   getDrivers() {
     this.dataService.getDrivers({
     }).subscribe((data) => {
         this.driversRows = data;
-        console.log(data);
     });
   }
 
   getDriverTransactions(driverId) {
     this.dataService.getDriverTransactions(driverId).subscribe((data) => {
         this.latestTransactions = data;
-        console.log(data);
     });
   }
 
   onSelect({selected}) {
-    console.log('Select Event', selected, this.selected);
     this.driverDetail = JSON.parse(JSON.stringify(selected[0]));
     this.driverDetailActive = true;
     this.tokenValue = 0;
     this.getDriverTransactions(this.driverDetail.address);
     this.selectedDriverIndex = selected[0].index;
   }
-
-  // selectRow(index) {
-  //   this.selectedDriverIndex = index;
-  //   console.log(this.selectedDriverIndex);
-  // }
 
   getTransactionDetails(index) {
     this.selectedTransactionIndex = index;
@@ -100,7 +87,6 @@ export class DriversComponent implements OnInit {
 
   topUpWallet() {
     this.dataService.topUpWallet(this.driverDetail.address, this.tokenValue).subscribe((data) => {
-        console.log(data);
         this.transactionsActive = false;
         this.tokensActive = false;
         this.tokenValue = 0;
@@ -108,7 +94,6 @@ export class DriversComponent implements OnInit {
         this.getDrivers();
         setTimeout(() => {
           this.driverDetail = this.driversRows[this.selectedDriverIndex];
-          console.log(this.selectedDriverIndex);
         }, 1000);
       });
   }

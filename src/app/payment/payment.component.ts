@@ -21,7 +21,6 @@ export class PaymentComponent implements OnInit {
               private toasterService: ToasterService) { }
 
   ngOnInit() {
-    // this.getCpoPaymentRequests();
     this.getCpoPaymentRequestsPending();
     this.getCpoPaymentRequestsCompleted();
   }
@@ -54,23 +53,6 @@ export class PaymentComponent implements OnInit {
         this.getCpoPaymentRequestsCompleted();
     });
   }
-
-  // getCdrs(reimbursementId) {
-  //   this.dataService.getCdrs(reimbursementId).subscribe((data) => {
-  //       console.log(data);
-  //   });
-  // }
-
-  // getInvoice(serverAddress, reimbursementId) {
-  //   this.dataService.getInvoice(serverAddress, reimbursementId).subscribe((data) => {
-  //       console.log(data.redirect);
-  //       console.log(serverAddress);
-  //       const replacedServerAddress = data.redirect.replace('http://{{server_addr}}:{{server_port}}', serverAddress);
-  //       const replacePdfToHtml = replacedServerAddress.replace('pdf', 'html');
-  //       console.log(replacePdfToHtml);
-  //       window.open(replacePdfToHtml, '_blank', 'toolbar=yes, location=yes, status=yes, menubar=yes, scrollbars=yes');
-  //     });
-  // }
 
   onSelectPending({selected}) {
     console.log('Select Event', selected, this.selected);

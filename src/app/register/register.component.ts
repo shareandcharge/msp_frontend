@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
       'website': this.accountInfo.website,
       'vat_number': this.accountInfo.vatNumber
     }).subscribe((data) => {
-         console.log(this.accountInfo);
          this.generateWallet();
          setTimeout(() => {
           this.router.navigate(['mnemonic']);
