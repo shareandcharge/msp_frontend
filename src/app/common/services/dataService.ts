@@ -37,7 +37,7 @@ export class DataService {
     }
 
     setAccountInfo(params): Observable<any> {
-        return this.execPOSTRequest(this.baseUrl + 'msp');
+        return this.execPOSTRequest(this.baseUrl + 'msp', params);
     }
 
     generateWallet(): Observable<any> {

@@ -15,13 +15,12 @@
 
     <ngx-datatable-column name="Name" prop="cpo_name" [sortable]="true">
       <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          Volkswagen Corporation
+        {{row.cpo_name}}
       </ng-template>
     </ngx-datatable-column>
 
     <ngx-datatable-column name="Transactions" prop="txs_number" [sortable]="true">
       <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <!-- {{row.server_addr}}/view_cdrs/{{row.reimbursement_id}} -->
           {{row.txs_number}}
       </ng-template>
     </ngx-datatable-column>
@@ -83,7 +82,7 @@
 
       <ngx-datatable-column name="Name" prop="cpo_name" [sortable]="true">
         <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-            Volkswagen Corporation
+            {{row.cpo_name}}
         </ng-template>
       </ngx-datatable-column>
 
