@@ -13,6 +13,7 @@ export class AccountComponent implements OnInit {
     currency: ''
   };
   accountHistory = [];
+  calculatedAmount = 0;
   weiToEvCoin = Math.pow(10, 18);
 
   constructor(private dataService: DataService) { }
@@ -38,14 +39,27 @@ export class AccountComponent implements OnInit {
 
   getHistory() {
     this.dataService.getHistory().subscribe((data) => {
-         this.accountHistory = data;
+        this.accountHistory = data;
+        let i;
+        let totalAmount = 0;
+        for (i = 0; i < this.accountHistory.length; i++) {
+          if (this.accountInfo.wallet ===  this.accountHistory[i].to_addr) {
+            totalAmount = totalAmount + this.accountHistory[i].amount;
+          } else {
+            totalAmount = totalAmount - this.accountHistory[i].amount;
+          }
+          if (this.accountHistory.length === (i + 1)) {
+            this.calculatedAmount = totalAmount;
+          }
+        }
     });
   }
 
   toFixedNotation(number) {
+    // disabled
     const initialnumber = Number.parseFloat(number).toFixed(4);
     const formatedNumber = initialnumber.toString();
-    return formatedNumber;
+    return number;
   }
 
   killMSP() {

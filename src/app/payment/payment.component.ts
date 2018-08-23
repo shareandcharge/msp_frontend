@@ -27,27 +27,23 @@ export class PaymentComponent implements OnInit {
 
   getCpoPaymentRequests() {
     this.dataService.getCpoPaymentRequests().subscribe((data) => {
-        console.log(data);
     });
   }
 
   getCpoPaymentRequestsPending() {
     this.dataService.getCpoPaymentRequestsPending().subscribe((data) => {
-        console.log(data);
         this.paymentPending = data;
     });
   }
 
   getCpoPaymentRequestsCompleted() {
     this.dataService.getCpoPaymentRequestsCompleted().subscribe((data) => {
-        console.log(data);
         this.paymentCompleted = data;
     });
   }
 
   setPaymentStatus(reimbursementId) {
     this.dataService.setPaymentStatus(reimbursementId).subscribe((data) => {
-        console.log(data);
         this.toasterService.pop('success', 'Success', 'Payment status successfully set.');
         this.getCpoPaymentRequestsPending();
         this.getCpoPaymentRequestsCompleted();
@@ -55,11 +51,11 @@ export class PaymentComponent implements OnInit {
   }
 
   onSelectPending({selected}) {
-    console.log('Select Event', selected, this.selected);
+    // console.log('Select Event', selected, this.selected);
   }
 
   onSelectCompleted({selected}) {
-    console.log('Select Event', selected, this.selected);
+    // console.log('Select Event', selected, this.selected);
   }
 
 }
