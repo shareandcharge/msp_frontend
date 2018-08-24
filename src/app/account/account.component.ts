@@ -55,12 +55,14 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  toFixedNotation(number) {
-    // disabled
-    // const initialnumber = Number.parseFloat(number).toFixed(4);
-    // const formatedNumber = initialnumber.toString();
-    // return formatedNumber;
-    return number;
+  truncateToDecimals(num, dec = 4) {
+    const calcDec = Math.pow(10, dec);
+    return Math.trunc(num * calcDec) / calcDec;
+  }
+
+  formatNumber(number) {
+    const truncatedNumber = this.truncateToDecimals(number);
+    return truncatedNumber;
   }
 
   killMSP() {
