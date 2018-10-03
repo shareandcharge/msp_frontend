@@ -4,6 +4,7 @@ import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import { DataService } from './common/index';
 import { Http, Response } from '@angular/http';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
     this.registeredFlag = localStorage.getItem('registeredMsp');
 
     if (this.registeredFlag !== 'true') {
-      this.http.get('http://18.195.223.26:9090/api/v1/msp').subscribe(
+      this.http.get(environment.apiUrl + 'msp').subscribe(
         data => {
           localStorage.setItem('registeredMsp', 'true');
           this.registeredFlag = localStorage.getItem('registeredMsp');
